@@ -1,12 +1,19 @@
-📝 Flask Transaction Manager
+
+# 📝 Flask Transaction Manager
+
 A simple Flask application to manage financial transactions with full CRUD functionality.
 
-🚀 Project Setup
-📦 1. Clone the Repository
-```
+---
+
+## 🚀 Project Setup
+
+### 📦 1. Clone the Repository
+
+```bash
 git clone https://github.com/ibm-developer-skills-network/obmnl-flask_assignment.git
 cd obmnl-flask_assignment
 ```
+
 Your project structure should now look like this:
 
 ```
@@ -17,38 +24,54 @@ obmnl-flask_assignment/
     ├── form.html
     └── transactions.html
 ```
-🔧 2. Initial Setup
-✅ Import Flask Functions in app.py
-At the top of app.py, import the required modules and create the Flask app:
 
-```
+---
+
+## 🔧 2. Initial Setup
+
+### ✅ Import Flask Functions in `app.py`
+
+At the top of `app.py`, import the required modules and create the Flask app:
+
+```python
 from flask import Flask, redirect, request, render_template, url_for
 
 app = Flask(__name__)
 ```
-🧪 Add Sample Data (Optional)
+
+### 🧪 Add Sample Data (Optional)
+
 Add sample transactions to test the interface:
 
-```
+```python
 transactions = [
     {'id': 1, 'date': '2023-06-01', 'amount': 100},
     {'id': 2, 'date': '2023-06-02', 'amount': -200},
     {'id': 3, 'date': '2023-06-03', 'amount': 300}
 ]
 ```
-📖 3. CRUD Operations
-📄 Read Operation
-Display all transactions at the root URL /:
 
-```
+---
+
+## 📖 3. CRUD Operations
+
+### 📄 Read Operation
+
+Display all transactions at the root URL `/`:
+
+```python
 @app.route("/")
 def get_transactions():
     return render_template("transactions.html", transactions=transactions)
 ```
-➕ Create Operation
+
+---
+
+### ➕ Create Operation
+
 Handle GET to show the form and POST to save a new transaction:
 
-```
+```python
 @app.route("/add", methods=["GET", "POST"])
 def add_transaction():
     if request.method == 'POST':
@@ -61,10 +84,14 @@ def add_transaction():
         return redirect(url_for("get_transactions"))
     return render_template("form.html")
 ```
-✏️ Update Operation
+
+---
+
+### ✏️ Update Operation
+
 Edit an existing transaction based on its ID:
 
-```
+```python
 @app.route("/edit/<int:transaction_id>", methods=["GET", "POST"])
 def edit_transaction(transaction_id):
     if request.method == 'POST':
@@ -82,10 +109,14 @@ def edit_transaction(transaction_id):
             return render_template("edit.html", transaction=transaction)
     return {"message": "Transaction not found"}, 404
 ```
-🗑️ Delete Operation
+
+---
+
+### 🗑️ Delete Operation
+
 Remove a transaction based on its ID:
 
-```
+```python
 @app.route("/delete/<int:transaction_id>")
 def delete_transaction(transaction_id):
     for transaction in transactions:
@@ -94,22 +125,48 @@ def delete_transaction(transaction_id):
             break
     return redirect(url_for("get_transactions"))
 ```
-🏁 Final Step: Run the Application
-Add this block at the end of app.py to start the server:
 
-```
+---
+
+## 🏁 Final Step: Run the Application
+
+Add this block at the end of `app.py` to start the server:
+
+```python
 if __name__ == "__main__":
     app.run(debug=True)
 ```
+
 Then start the Flask server by running:
 
-```
+```bash
 python3.11 app.py
 ```
-🌐 Access the App
+
+---
+
+## 🌐 Access the App
+
 Once running, visit your app in the browser at:
 
 ```
 http://localhost:5000
 ```
-If you're using an online IDE (like Skills Network Labs), launch the app and enter port 5000 when prompted.
+
+If you're using an online IDE (like Skills Network Labs), launch the app and enter port **5000** when prompted.
+
+---
+
+## ✅ Features
+
+- View all transactions
+- Add new transactions
+- Edit existing transactions
+- Delete transactions
+- Fully responsive HTML templates
+
+---
+
+## 📁 License
+
+This project is provided for educational purposes only.
